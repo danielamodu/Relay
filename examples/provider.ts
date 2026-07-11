@@ -194,8 +194,8 @@ function startHttpServer(client: AgentClient) {
     res.end(JSON.stringify({ error: 'Not Found' }));
   });
 
-  server.listen(PORT, () => {
-    console.log(`[HTTP Dashboard Server] Running on http://localhost:${PORT}`);
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`[HTTP Dashboard Server] Running on http://0.0.0.0:${PORT}`);
   });
 }
 
