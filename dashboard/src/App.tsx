@@ -57,7 +57,7 @@ const DEFAULT_XML = `<PricingQuote>
   <TotalPrice>1875.00</TotalPrice>
 </PricingQuote>`;
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001';
 
 function App() {
   const [agents, setAgents] = useState<AgentStatus[]>([]);

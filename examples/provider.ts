@@ -445,7 +445,7 @@ async function fetchUpstreamData(
       wsURL: process.env.CROO_WS_URL!,
       rpcURL: process.env.BASE_RPC_URL,
     },
-    'croo_sk_b6c6376008b654a95dfb6ec0f3ed1f19'
+    process.env.CROO_SDK_KEY || 'croo_sk_b6c6376008b654a95dfb6ec0f3ed1f19'
   );
 
   console.log('Connecting upstream WebSocket...');
