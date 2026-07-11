@@ -115,7 +115,8 @@ function startHttpServer(client: AgentClient) {
           }
         }
       }
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.setHeader('Content-Type', 'application/json');
+      res.writeHead(200);
       res.end(JSON.stringify({
         agents: Object.values(agentsStatus),
         activeFlows: Array.from(activeFlows.values())
@@ -124,14 +125,16 @@ function startHttpServer(client: AgentClient) {
     }
 
     if (req.method === 'GET' && url.pathname === '/api/transactions') {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.setHeader('Content-Type', 'application/json');
+      res.writeHead(200);
       res.end(JSON.stringify(transactionHistory));
       return;
     }
 
     if (req.method === 'GET' && url.pathname === '/api/registry') {
       const registry = getCompatibilityRegistry();
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.setHeader('Content-Type', 'application/json');
+      res.writeHead(200);
       res.end(JSON.stringify(registry));
       return;
     }
@@ -143,7 +146,8 @@ function startHttpServer(client: AgentClient) {
         try {
           const { payload, sourceFormat, targetFormat, prune } = JSON.parse(body);
           if (!payload || !sourceFormat || !targetFormat) {
-            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.setHeader('Content-Type', 'application/json');
+            res.writeHead(400);
             res.end(JSON.stringify({ error: 'Missing required fields' }));
             return;
           }
@@ -176,21 +180,24 @@ function startHttpServer(client: AgentClient) {
             mock: true
           };
 
-          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.setHeader('Content-Type', 'application/json');
+          res.writeHead(200);
           res.end(JSON.stringify({
             translated: finalPayload,
             pruned: prunedVal,
             receipt
           }));
         } catch (err: any) {
-          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.setHeader('Content-Type', 'application/json');
+          res.writeHead(500);
           res.end(JSON.stringify({ error: err.message || 'Translation failed' }));
         }
       });
       return;
     }
 
-    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.setHeader('Content-Type', 'application/json');
+    res.writeHead(404);
     res.end(JSON.stringify({ error: 'Not Found' }));
   });
 
