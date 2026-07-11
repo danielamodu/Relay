@@ -1,0 +1,23 @@
+[
+  {
+    "source_agent_id": "seed-pricing-agent",
+    "target_agent_id": "seed-translation-agent",
+    "source_format": "xml",
+    "target_format": "json",
+    "service_id": "fed019b5-c00b-450b-a9a6-fb3d177af972"
+  },
+  {
+    "source_agent_id": "seed-translation-agent",
+    "target_agent_id": "seed-pricing-agent",
+    "source_format": "json",
+    "target_format": "xml",
+    "service_id": "96832bb4-c86b-4069-8349-6fcc17b52317"
+  },
+  {
+    "source_agent_id": "unknown_requester",
+    "target_agent_id": "unknown_provider",
+    "source_format": "json",
+    "target_format": "xml",
+    "service_id": "96832bb4-c86b-4069-8349-6fcc17b52317"
+  }
+]
