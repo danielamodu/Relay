@@ -1,31 +1,19 @@
 # Relay: Schema Transmutation & Interoperability Engine
 
-**Relay** is a production-grade schema translation, monitoring, and validation engine built for the **Developer and Tooling Track** of the **CROO Agent Hackathon**. It bridges autonomous agents communicating with incompatible data protocols (e.g., JSON and XML) on the Base network, ensuring secure, verifiable, and context-optimized payload exchanges.
+**Relay** is a production-grade schema translation, monitoring, and validation engine. It acts as an interoperability layer for autonomous agents communicating with incompatible data protocols (e.g., JSON and XML) on the Base network, ensuring secure, verifiable, and context-optimized payload exchanges.
 
 ---
 
-## 🚀 Hackathon Requirements Coverage
-
-| Hackathon Requirement | Relay Implementation | Technical Details |
-| :--- | :--- | :--- |
-| **Ingestion of Arbitrary Schemas** | ✅ **100% Met** | Relaxes strict payload wrapper rules to gracefully extract data from JSON, XML, or plain text structures. |
-| **Verifiable Proof & Receipts** | ✅ **100% Met** | Cryptographically links input requirements and translated outputs using SHA-256 hashes returned inside verifiable receipts. |
-| **Discovery & Compatibility** | ✅ **100% Met** | Exposes a persistent Compatibility Registry answering search queries for matched formats across node operators. |
-| **Robust Network Fault Tolerance** | ✅ **100% Met** | Features custom WebSocket timeout patching (extended to 600s), order status conflict bypasses, and mock fallbacks on upstream timeouts. |
-| **Production Availability (24/7)** | ✅ **100% Met** | Ready for persistent multi-node orchestration via PM2, Docker, or server-level daemons. |
-
----
-
-## 🛠️ Core Engine Features
+## 🛠️ Core Capabilities
 
 ### 1. Bidirectional Data Transmutation (JSON ⇄ XML)
 Dynamically parses, converts, and structures arbitrary data formats on-the-fly:
-* **JSON to XML**: Maps inventory telemetry into detailed XML pricing quotes.
-* **XML to JSON**: Extracts tag values from XML schemas and formats them into structured JSON objects.
+* **JSON to XML**: Maps flat JSON inventory telemetry into structured XML pricing quotes.
+* **XML to JSON**: Extracts tag values from XML schemas and parses them into standardized JSON objects.
 
 ### 2. Intelligent Format Auto-Detection
 * Scans payload prefix characters (`{`, `[`, `<`) to automatically identify incoming formats.
-* Dynamically infers source/target directions from request headers, templates, or query identifiers (`item_id`) when omitted.
+* Infers source/target directions from request headers, templates, or query identifiers (`item_id`) when omitted.
 
 ### 3. Translation Templates Cache
 * Saves and loads serialization mappings via `templates_registry.json`.
@@ -33,7 +21,7 @@ Dynamically parses, converts, and structures arbitrary data formats on-the-fly:
 
 ### 4. Cryptographic Translation Proof (Receipts)
 * Computes SHA-256 hashes for both incoming and outgoing payloads.
-* Returns a structured receipt containing verification hashes, item identifiers, upstream details, and order IDs.
+* Returns a structured receipt containing verification hashes, item identifiers, upstream details, and order IDs to ensure data integrity.
 
 ### 5. Idempotency Key Tracking
 * Prevents double-spend and redundant processing on-chain.
@@ -49,7 +37,7 @@ Dynamically parses, converts, and structures arbitrary data formats on-the-fly:
 
 ---
 
-## 🏗️ Architectural Flow (CAP Protocol)
+## 🏗️ Architectural Flow
 
 ```mermaid
 sequenceDiagram
@@ -78,7 +66,9 @@ sequenceDiagram
 
 Relay includes a premium, monochromatic, editorial-grade dashboard built strictly in black and white to match the brand logo. It rejects standard SaaS clichés (no glowing cards, neon colors, or border radius) in favor of crisp typography and structured grid borders.
 
-### Dashboard Capabilities
+The dashboard connects to the local HTTP server exposed by the Relay backend on port `3001`.
+
+### Dashboard Features
 1. **Node Health Monitoring**: Live status displays (`[ONLINE]`, `[ACTIVE]`, `[IDLE]`, `[OFFLINE]`) tracking Relay, Pricing, and Inventory agents.
 2. **Active CAP Flow State Tracker**: Monitors order negotiations step-by-step from Acceptance to Paid, Translating, Delivering, and Completed.
 3. **Verified Ledger**: Audits cryptographic receipts and input/output hashes for all transaction history.
